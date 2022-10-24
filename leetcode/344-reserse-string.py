@@ -9,3 +9,8 @@ def reserseString(s: List[str]) -> None:
         right -= 1
     print(s)
 reserseString(["h","e","l","l","o"])
+
+def reserveString1(s: List[str]) -> None:
+    s.reverse()
+    print(s)
+reserveString1(["h","e","l","l","o"])
