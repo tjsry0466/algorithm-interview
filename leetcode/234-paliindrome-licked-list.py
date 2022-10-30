@@ -46,10 +46,28 @@ def isPalindrome1(head: ListNode) -> bool:
     return True
 
 
+def isPalindrome2(head: ListNode) -> bool:  # ✅다시 풀어보기
+    rev = None
+    slow = fast = head
+
+    # 런너를 이용해 역순 연결 리스트 구성
+    while fast and fast.next:
+        fast = fast.next.next
+        rev, rev.next, slow = slow, rev, slow.next
+    if fast:  # 입력값이 홀수일때 slow 러너를 한칸 더 이동하여 체크에서 배제
+        slow = slow.next
+
+    # 팰린드롬 여부 확인
+    while rev and rev.val == slow.val:
+        slow, rev = slow.next, rev.next
+    return not rev  # return not slow도 가능
+
+
 node2 = ListNode(2)
 node1 = ListNode(1, node2)
 print(isPalindrome(node1))
 print(isPalindrome1(node1))
+print(isPalindrome2(node1))
 
 node4 = ListNode(1)
 node3 = ListNode(2, node4)
@@ -57,3 +75,4 @@ node2 = ListNode(2, node3)
 node1 = ListNode(1, node2)
 print(isPalindrome(node1))
 print(isPalindrome1(node1))
+print(isPalindrome2(node1))
